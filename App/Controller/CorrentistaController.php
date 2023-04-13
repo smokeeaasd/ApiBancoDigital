@@ -20,4 +20,35 @@ class CorrentistaController extends Controller
             parent::getExceptionAsJSON($e);
         }
     }
+    
+    public static function getCorrentista() : void
+    {
+        try 
+        {
+            $id = parent::getIntFromUrl($_GET['id']);
+            
+            $model = new CorrentistaModel();
+
+            $model->getById($id);
+
+            parent::getResponseAsJSON($model->rows);
+
+        }
+        catch (Exception $e)
+        {
+            parent::getExceptionAsJSON($e);
+        }
+    }
+
+    public static function addCorrentista() : void
+    {
+        try 
+        {
+            //terminar
+        }
+        catch (Exception $e)
+        {
+            parent::getExceptionAsJSON($e);
+        }
+    }
 }

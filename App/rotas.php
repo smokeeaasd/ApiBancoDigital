@@ -11,6 +11,10 @@ switch ($uri)
         CorrentistaController::getCorrentistas();
     break;
 
+    case "/api/correntista/by-id":
+        CorrentistaController::getCorrentista();
+    break;
+
     default:
         http_response_code(403);
     break;
