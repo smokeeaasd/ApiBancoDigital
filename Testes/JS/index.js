@@ -1,17 +1,12 @@
 const Conta = require("./Conta.js");
 const Correntista = require("./Correntista.js");
+const ChavePix = require("./ChavePix.js");
+const Transacao = require("./Transacao.js");
 
 async function main() {
-	let contas = await Conta.getContas(false);
+	let transacao = await Transacao.addTransacao("2022-01-01", 250, 1, 2);
 
-
-	contas.forEach(async (c) => {
-		let correntista = await Correntista.getCorrentistaByID(false, c.id_correntista);
-
-		console.table([correntista]);
-		console.table([c]);
-
-	});
+	console.log(transacao);
 }
 
 main();

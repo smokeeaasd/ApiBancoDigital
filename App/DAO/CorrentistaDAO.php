@@ -90,4 +90,15 @@ class CorrentistaDAO extends DAO
 
         $stmt->execute();
     }
+
+    public function delete(int $id)
+    {
+        $sql = "DELETE FROM Correntista WHERE id = ?";
+
+        $stmt = $this->conexao->prepare($sql);
+
+        $stmt->bindValue(1, $id);
+
+        $stmt->execute();
+    }
 }

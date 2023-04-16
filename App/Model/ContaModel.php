@@ -88,4 +88,32 @@ class ContaModel extends Model
             throw $e;
         }
     }
+
+	public function deleteConta(int $id)
+	{
+		try
+		{
+			$dao = new ContaDAO();
+
+			$dao->delete($id);
+		}
+		catch (Exception $e)
+		{
+			throw $e;
+		}
+	}
+
+	public function deleteContasByIdCorrentista(int $id_correntista)
+	{
+		try
+		{
+			$dao = new ContaDAO();
+
+			$dao->deleteByIdCorrentista($id_correntista);
+		}
+		catch (Exception $e)
+		{
+			throw $e;
+		}
+	}
 }

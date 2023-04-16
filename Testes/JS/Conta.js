@@ -7,7 +7,7 @@ class Conta {
 			baseURL: "http://localhost:8000/api"
 		});
 
-		const req = await axios.get("contas");
+		const req = await axios.get("conta");
 
 		return JSON.parse(req.data);
 	}

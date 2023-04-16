@@ -8,7 +8,7 @@ class Correntista {
 			baseURL: "http://localhost:8000/api"
 		});
 
-		const req = await axios.get("correntistas");
+		const req = await axios.get("correntista");
 
 		return JSON.parse(req.data);
 	}

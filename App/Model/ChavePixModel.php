@@ -2,18 +2,18 @@
 
 namespace App\Model;
 
-use App\DAO\CorrentistaDAO;
+use App\DAO\ChavePixDAO;
 use Exception;
 
-class CorrentistaModel extends Model
+class ChavePixModel extends Model
 {
-    public $id, $nome, $cpf, $data_nasc, $senha;
+    public $id, $chave, $tipo, $id_conta;
 
     public function getAll()
     {
         try
         {
-            $dao = new CorrentistaDAO();
+            $dao = new ChavePixDAO();
             $this->rows = $dao->selectAll();
         }
         catch (Exception $e)
@@ -26,7 +26,7 @@ class CorrentistaModel extends Model
     {
         try
         {
-            $dao = new CorrentistaDAO();
+            $dao = new ChavePixDAO();
             $this->rows = $dao->selectById($id);
         }
         catch (Exception $e)
@@ -35,12 +35,12 @@ class CorrentistaModel extends Model
         }
     }
 
-    public function getByCPF(string $cpf)
+    public function getByChave(string $chave)
     {
         try
         {
-            $dao = new CorrentistaDAO();
-            $this->rows = $dao->selectByCPF($cpf);
+            $dao = new ChavePixDAO();
+            $this->rows = $dao->selectByChave($chave);
         }
         catch (Exception $e)
         {
@@ -48,12 +48,12 @@ class CorrentistaModel extends Model
         }
     }
 
-    public function getByCPFAndSenha(string $cpf, string $senha)
+    public function getByConta(int $id_conta)
     {
         try
         {
-            $dao = new CorrentistaDAO();
-            $this->rows = $dao->selectByCPFAndSenha($cpf, $senha);
+            $dao = new ChavePixDAO();
+            $this->rows = $dao->selectByConta($id_conta);
         }
         catch (Exception $e)
         {
@@ -61,11 +61,11 @@ class CorrentistaModel extends Model
         }
     }
 
-    public function addCorrentista()
+    public function addChavePix()
     {
         try
         {
-            $dao = new CorrentistaDAO();
+            $dao = new ChavePixDAO();
             
 			$dao->insert($this);
         }
@@ -75,11 +75,11 @@ class CorrentistaModel extends Model
         }
     }
 
-    public function updateCorrentista()
+    public function updateChavePix()
     {
         try
         {
-            $dao = new CorrentistaDAO();
+            $dao = new ChavePixDAO();
             
 			$dao->update($this);
         }
@@ -89,13 +89,27 @@ class CorrentistaModel extends Model
         }
     }
 
-	public function deleteCorrentista(int $id)
+	public function deleteChavePix(int $id)
 	{
 		try
 		{
-			$dao = new CorrentistaDAO();
+			$dao = new ChavePixDAO();
 
 			$dao->delete($id);
+		}
+		catch (Exception $e)
+		{
+			throw $e;
+		}
+	}
+
+	public function deleteChavesPixByConta(int $id_conta)
+	{
+		try
+		{
+			$dao = new ChavePixDAO();
+
+			$dao->deleteByIdConta($id_conta);
 		}
 		catch (Exception $e)
 		{

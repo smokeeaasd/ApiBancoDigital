@@ -90,4 +90,26 @@ class ContaDAO extends DAO
 
         $stmt->execute();
     }
+
+	public function delete(int $id)
+    {
+        $sql = "DELETE FROM Conta WHERE id = ?";
+
+        $stmt = $this->conexao->prepare($sql);
+
+        $stmt->bindValue(1, $id);
+
+        $stmt->execute();
+    }
+
+	public function deleteByIdCorrentista(int $id_correntista)
+    {
+        $sql = "DELETE FROM Conta WHERE id_correntista = ?";
+
+        $stmt = $this->conexao->prepare($sql);
+
+        $stmt->bindValue(1, $id_correntista);
+
+        $stmt->execute();
+    }
 }

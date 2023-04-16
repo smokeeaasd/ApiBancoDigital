@@ -1,7 +1,9 @@
 <?php
 
+use App\Controller\ChavePixController;
 use App\Controller\ContaController;
 use App\Controller\CorrentistaController;
+use App\Controller\TransacaoController;
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
@@ -11,7 +13,7 @@ switch ($uri)
 	/**
 	 * Rotas para Correntista
 	 */
-    case "/api/correntistas":
+    case "/api/correntista":
         CorrentistaController::getCorrentistas();
     break;
 
@@ -34,7 +36,7 @@ switch ($uri)
 	/**
 	 * Rotas para Conta
 	 */
-	case "/api/contas":
+	case "/api/conta":
 		ContaController::getContas();
 	break;
 
@@ -56,6 +58,61 @@ switch ($uri)
 
 	case "/api/conta/update":
 		ContaController::updateConta();
+	break;
+
+	/**
+	 * Rotas para ChavePix
+	 */
+
+	case "/api/chavepix":
+		ChavePixController::getChavesPix();
+	break;
+
+	case "/api/chavepix/by-id":
+		ChavePixController::getChavePixById();
+	break;
+
+	case "/api/chavepix/by-conta":
+		ChavePixController::getChavesPixByConta();
+	break;
+
+	case "/api/chavepix/by-chave":
+		ChavePixController::getChavePixByChave();
+	break;
+
+	case "/api/chavepix/new":
+		ChavePixController::addChavePix();
+	break;
+
+	case "/api/chavepix/update":
+		ChavePixController::updateChavePix();
+	break;
+
+	case "/api/chavepix/delete":
+		ChavePixController::deleteChavePix();
+	break;
+
+	/**
+	 * Rotas para Transacao
+	 */
+	case "/api/transacao":
+		TransacaoController::getTransacoes();
+	break;
+
+	case "/api/transacao/by-id":
+		TransacaoController::getTransacaoById();
+	break;
+
+	case "/api/transacao/by-remetente":
+		TransacaoController::getTransacaoByRemetente();
+	break;
+
+	case "/api/transacao/by-destinatario":
+		TransacaoController::getTransacaoByDestinatario();
+	break;
+
+	case "/api/transacao/new":
+		TransacaoController::addTransacao();
 	break;
 
     default:
