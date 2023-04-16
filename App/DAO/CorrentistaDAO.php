@@ -48,33 +48,46 @@ class CorrentistaDAO extends DAO
         return $stmt->fetchObject("App\\Model\\CorrentistaModel");
     }
 
-    public function insert($nome, $cpf, $data_nasc, $senha)
+    public function selectByCPFAndSenha(string $cpf, string $senha)
+    {
+        $sql = "SELECT * FROM Correntista WHERE cpf = ? AND senha = sha1(?)";
+
+        $stmt = $this->conexao->prepare($sql);
+
+        $stmt->bindValue(1, $cpf);
+        $stmt->bindValue(2, $senha);
+
+        $stmt->execute();
+
+        return $stmt->fetchObject("App\\Model\\CorrentistaModel");
+    }
+
+    public function insert(CorrentistaModel $model)
     {
         $sql = "INSERT INTO Correntista (nome, cpf, data_nasc, senha) VALUES (?, ?, ?, sha1(?))";
 
         $stmt = $this->conexao->prepare($sql);
 
-        $stmt->bindValue(1, $nome);
-        $stmt->bindValue(2, $cpf);
-        $stmt->bindValue(3, $data_nasc);
-        $stmt->bindValue(4, $senha);
+        $stmt->bindValue(1, $model->nome);
+        $stmt->bindValue(2, $model->cpf);
+        $stmt->bindValue(3, $model->data_nasc);
+        $stmt->bindValue(4, $model->senha);
 
         $stmt->execute();
     }
 
-    public function update($nome, $cpf, $data_nasc, $senha, $id)
+    public function update(CorrentistaModel $model)
     {
         $sql = "UPDATE Correntista SET nome = ?, cpf = ?, data_nasc = ?, senha = sha1(?) WHERE id = ?";
 
         $stmt = $this->conexao->prepare($sql);
 
-        $stmt->bindValue(1, $nome);
-        $stmt->bindValue(2, $cpf);
-        $stmt->bindValue(3, $data_nasc);
-        $stmt->bindValue(4, $senha);
-        $stmt->bindValue(5, $id);
+        $stmt->bindValue(1, $model->nome);
+        $stmt->bindValue(2, $model->cpf);
+        $stmt->bindValue(3, $model->data_nasc);
+        $stmt->bindValue(4, $model->senha);
+        $stmt->bindValue(5, $model->id);
 
         $stmt->execute();
     }
-
 }
