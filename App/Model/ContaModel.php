@@ -2,18 +2,18 @@
 
 namespace App\Model;
 
-use App\DAO\CorrentistaDAO;
+use App\DAO\ContaDAO;
 use Exception;
 
-class CorrentistaModel extends Model
+class ContaModel extends Model
 {
-    public $id, $nome, $cpf, $data_nasc, $senha;
+    public $id, $numero, $tipo, $senha, $id_correntista;
 
     public function getAll()
     {
         try
         {
-            $dao = new CorrentistaDAO();
+            $dao = new ContaDAO();
             $this->rows = $dao->selectAll();
         }
         catch (Exception $e)
@@ -26,7 +26,7 @@ class CorrentistaModel extends Model
     {
         try
         {
-            $dao = new CorrentistaDAO();
+            $dao = new ContaDAO();
             $this->rows = $dao->selectById($id);
         }
         catch (Exception $e)
@@ -35,12 +35,12 @@ class CorrentistaModel extends Model
         }
     }
 
-    public function getByCPF(string $cpf)
+    public function getByCorrentista(int $id_correntista)
     {
         try
         {
-            $dao = new CorrentistaDAO();
-            $this->rows = $dao->selectByCPF($cpf);
+            $dao = new ContaDAO();
+            $this->rows = $dao->selectByCorrentista($id_correntista);
         }
         catch (Exception $e)
         {
@@ -48,12 +48,12 @@ class CorrentistaModel extends Model
         }
     }
 
-    public function getByCPFAndSenha(string $cpf, string $senha)
+    public function getByNumero(int $numero)
     {
         try
         {
-            $dao = new CorrentistaDAO();
-            $this->rows = $dao->selectByCPFAndSenha($cpf, $senha);
+            $dao = new ContaDAO();
+            $this->rows = $dao->selectByNumero($numero);
         }
         catch (Exception $e)
         {
@@ -61,11 +61,11 @@ class CorrentistaModel extends Model
         }
     }
 
-    public function addCorrentista()
+    public function addConta()
     {
         try
         {
-            $dao = new CorrentistaDAO();
+            $dao = new ContaDAO();
             
 			$dao->insert($this);
         }
@@ -75,11 +75,11 @@ class CorrentistaModel extends Model
         }
     }
 
-    public function updateCorrentista()
+    public function updateConta()
     {
         try
         {
-            $dao = new CorrentistaDAO();
+            $dao = new ContaDAO();
             
 			$dao->update($this);
         }
