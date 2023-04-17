@@ -49,7 +49,7 @@ class Conta {
 
 		const req = await axios.post("conta/new", querystring.stringify(data));
 
-		console.log(req.data);
+		return req.data;
 	}
 
 	static async updateConta(id, numero, tipo, senha, id_correntista) {
@@ -70,7 +70,7 @@ class Conta {
 
 		const req = await axios.post("conta/update", querystring.stringify(data));
 
-		console.log(req.data);
+		return req.data;
 	}
 }
 

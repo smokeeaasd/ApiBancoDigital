@@ -74,4 +74,17 @@ class TransacaoModel extends Model
             throw $e;
         }
     }
+
+    public function removeByIdRemetente(int $id_remetente)
+    {
+        try
+        {
+            $dao = new TransacaoDAO();
+            $dao->deleteByIdRemetente($id_remetente);
+        }
+        catch (Exception $e)
+        {
+            throw $e;
+        }
+    }
 }

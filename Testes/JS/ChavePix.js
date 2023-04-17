@@ -59,8 +59,7 @@ class ChavePix {
 
 		const req = await axios.post("chavepix/new", querystring.stringify(data));
 
-		console.log(req.data);
-		console.log();
+		return req.data;
 	}
 
 	static async updateChavePix(id, chave, tipo, id_conta) {
@@ -80,8 +79,7 @@ class ChavePix {
 
 		const req = await axios.post("chavepix/update", querystring.stringify(data));
 
-		console.log(req.data);
-		console.log();
+		return req.data;
 	}
 }
 

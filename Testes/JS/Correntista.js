@@ -50,8 +50,7 @@ class Correntista {
 
 		const req = await axios.post("correntista/new", querystring.stringify(data));
 
-		console.log(req.data);
-		console.log();
+		return req.data;
 	}
 
 	static async updateCorrentista(id, nome, cpf, data_nasc, senha) {
@@ -72,8 +71,7 @@ class Correntista {
 
 		const req = await axios.post("correntista/update", querystring.stringify(data));
 
-		console.log(req.data);
-		console.log();
+		return req.data;
 	}
 }
 
