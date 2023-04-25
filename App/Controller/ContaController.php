@@ -82,10 +82,12 @@ class ContaController extends Controller
         {
 			$model = new ContaModel();
 
-			$model->numero = $_POST['numero'];
-			$model->tipo = $_POST['tipo'];
-			$model->senha = $_POST['senha'];
-			$model->id_correntista = $_POST['id_correntista'];
+            $json = file_get_contents("php://input");
+            
+			$model->numero = $json['numero'];
+			$model->tipo = $json['tipo'];
+			$model->senha = $json['senha'];
+			$model->id_correntista = $json['id_correntista'];
 
 			$model->addConta();
 
@@ -103,11 +105,13 @@ class ContaController extends Controller
         {
             $model = new ContaModel();
 
-			$model->id = $_POST['id'];
-			$model->numero = $_POST['numero'];
-			$model->tipo = $_POST['tipo'];
-			$model->senha = $_POST['senha'];
-			$model->id_correntista = $_POST['id_correntista'];
+            $json = file_get_contents("php://input");
+
+			$model->id = $json['id'];
+			$model->numero = $json['numero'];
+			$model->tipo = $json['tipo'];
+			$model->senha = $json['senha'];
+			$model->id_correntista = $json['id_correntista'];
 
 			$model->updateConta();
 

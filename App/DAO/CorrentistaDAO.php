@@ -3,6 +3,7 @@
 namespace App\DAO;
 
 use App\Model\CorrentistaModel;
+use PDO;
 
 class CorrentistaDAO extends DAO
 {
@@ -74,6 +75,8 @@ class CorrentistaDAO extends DAO
         $stmt->bindValue(4, $model->senha);
 
         $stmt->execute();
+
+        return $this->conexao->lastInsertId();
     }
 
     public function update(CorrentistaModel $model)

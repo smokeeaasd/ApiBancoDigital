@@ -67,7 +67,7 @@ class CorrentistaModel extends Model
         {
             $dao = new CorrentistaDAO();
             
-			$dao->insert($this);
+			return $dao->insert($this);
         }
         catch (Exception $e)
         {
