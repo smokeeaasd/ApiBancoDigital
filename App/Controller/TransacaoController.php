@@ -82,12 +82,12 @@ class TransacaoController extends Controller
         {
 			$model = new TransacaoModel();
 
-            $json = file_get_contents("php://input");
+            $json = json_decode(file_get_contents("php://input"));
 
-			$model->data_transacao = $json['data_transacao'];
-			$model->valor = $json['valor'];
-			$model->id_remetente = $json['id_remetente'];
-			$model->id_destinatario = $json['id_destinatario'];
+			$model->data_transacao = $json->DataTransacao;
+			$model->valor = $json->Valor;
+			$model->id_remetente = $json->IdRemetente;
+			$model->id_destinatario = $json->IdDestinatario;
 
 			$model->addTransacao();
 

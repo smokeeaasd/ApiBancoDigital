@@ -69,11 +69,11 @@ class ChavePixController extends Controller
 		try {
 			$model = new ChavePixModel();
 			
-			$json = file_get_contents("php://input");
+			$json = json_decode(file_get_contents("php://input"));
 
-			$model->chave = $json['chave'];
-			$model->tipo = $json['tipo'];
-			$model->id_conta = $json['id_conta'];
+			$model->chave = $json->Chave;
+			$model->tipo = $json->Tipo;
+			$model->id_conta = $json->IdConta;
 
 			$model->addChavePix();
 
@@ -88,12 +88,12 @@ class ChavePixController extends Controller
 		try {
 			$model = new ChavePixModel();
 			
-			$json = file_get_contents("php://input");
+			$json = json_decode(file_get_contents("php://input"));
 
-			$model->id = $json['id'];
-			$model->chave = $json['chave'];
-			$model->tipo = $json['tipo'];
-			$model->id_conta = $json['id_conta'];
+			$model->id = $json->Id;
+			$model->chave = $json->Chave;
+			$model->tipo = $json->Tipo;
+			$model->id_conta = $json->IdConta;
 
 			$model->updateChavePix();
 

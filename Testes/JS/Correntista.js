@@ -35,20 +35,20 @@ class Correntista {
 
 	static async addCorrentista(nome, cpf, data_nasc, senha) {
 		const axios = new Axios({
-			baseURL: "http://localhost:8000/api",
+			baseURL: "http://192.168.160.1:8000/api",
 			headers: {
-				'Content-Type': 'application/x-www-form-urlencoded'
+				'Content-Type': 'application/json'
 			}
 		});
 
 		const data = {
-			nome: nome,
-			cpf: cpf,
-			data_nasc: data_nasc,
-			senha: senha
+			Nome: nome,
+			CPF: cpf,
+			DataNascimento: data_nasc,
+			Senha: senha
 		};
 
-		const req = await axios.post("correntista/new", querystring.stringify(data));
+		const req = await axios.post("correntista/new", JSON.stringify(data));
 
 		return req.data;
 	}

@@ -66,23 +66,24 @@ class CorrentistaController extends Controller
         {
 			$model = new CorrentistaModel();
 
-            $json = file_get_contents("php://input");
-            
-            $cpf = $json['cpf'];
+            $json = json_decode(file_get_contents("php://input"));
+            $cpf = $json->CPF;
 
             if (!(new CorrentistaModel())->getByCPF($cpf))
             {		
-                $model->nome = $json['nome'];
-                $model->cpf = $json['cpf'];
-                $model->data_nasc = $json['data_nasc'];
-                $model->senha = $json['senha'];
+                $model->nome = $json->Nome;
+                $model->cpf = $json->CPF;
+                $model->data_nasc = $json->data_nasc;
+                $model->senha = $json->Senha;
 
                 $last_id = $model->addCorrentista();
 
-                parent::getResponseAsJSON($model->getById($last_id));
+                $model->getById($last_id);
+
+                parent::getResponseAsJSON($model->rows);
             } else {
                 parent::getResponseAsJSON([
-                    'errNumber' => 1,
+                    'ErrNumber' => 1,
                     'message' => 'CPF já cadastrado.'
                 ]);
             }
@@ -99,13 +100,13 @@ class CorrentistaController extends Controller
         {
             $model = new CorrentistaModel();
 
-            $json = file_get_contents("php://input");
+            $json = json_decode(file_get_contents("php://input"));
 
-			$model->id = $json['id'];
-			$model->nome = $json['nome'];
-			$model->cpf = $json['cpf'];
-			$model->data_nasc = $json['data_nasc'];
-			$model->senha = $json['senha'];
+			$model->id = $json->Id;
+			$model->nome = $json->Nome;
+			$model->cpf = $json->CPF;
+			$model->data_nasc = $json->data_nasc;
+			$model->senha = $json->Senha;
 
 			$model->updateCorrentista();
 
