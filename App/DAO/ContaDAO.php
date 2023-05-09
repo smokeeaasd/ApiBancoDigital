@@ -68,7 +68,7 @@ class ContaDAO extends DAO
         $stmt = $this->conexao->prepare($sql);
 
         $stmt->bindValue(1, $model->id);
-        $stmt->bindValue(2, $model->numero);
+        $stmt->bindValue(2, $model->id); // eu defini q o numero vai ser igual ao id pq sim
         $stmt->bindValue(3, $model->tipo);
         $stmt->bindValue(4, $model->senha);
         $stmt->bindValue(5, $model->id_correntista);
@@ -78,15 +78,14 @@ class ContaDAO extends DAO
 
     public function update(ContaModel $model)
     {
-        $sql = "UPDATE Conta SET numero = ?, tipo = ?, senha = sha1(?), id_correntista = ? WHERE id = ?";
+        $sql = "UPDATE Conta SET tipo = ?, senha = sha1(?), id_correntista = ? WHERE id = ?";
 
         $stmt = $this->conexao->prepare($sql);
 
-        $stmt->bindValue(1, $model->numero);
-        $stmt->bindValue(2, $model->tipo);
-        $stmt->bindValue(3, $model->senha);
-        $stmt->bindValue(4, $model->id_correntista);
-        $stmt->bindValue(5, $model->id);
+        $stmt->bindValue(1, $model->tipo);
+        $stmt->bindValue(2, $model->senha);
+        $stmt->bindValue(3, $model->id_correntista);
+        $stmt->bindValue(4, $model->id);
 
         $stmt->execute();
     }
