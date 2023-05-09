@@ -6,7 +6,7 @@ use Exception;
 
 abstract class Controller
 {
-    public static function getResponseAsJSON($data)
+    public static function getResponseAsJSON($data, int $type)
     {
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
@@ -14,7 +14,12 @@ abstract class Controller
         header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
         header("Pragma: public");
 
-        exit(json_encode($data, JSON_UNESCAPED_UNICODE));
+        $response = [
+            'Type' => $type,
+            'Data' => $data
+        ];
+
+        exit(json_encode($response, JSON_UNESCAPED_UNICODE));
     }
 
     public static function setResponseAsJSON($data, $request_status = true)

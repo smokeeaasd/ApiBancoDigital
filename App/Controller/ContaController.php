@@ -14,7 +14,7 @@ class ContaController extends Controller
         {
             $model = new ContaModel();
             $model->getAll();
-            parent::getResponseAsJSON($model->rows);
+            parent::getResponseAsJSON($model->rows, 1);
 
         } catch (Exception $e) {
             parent::getExceptionAsJSON($e);
@@ -31,7 +31,7 @@ class ContaController extends Controller
 
             $model->getById($id);
 
-            parent::getResponseAsJSON($model->rows);
+            parent::getResponseAsJSON($model->rows, 1);
 
         }
         catch (Exception $e)
@@ -50,7 +50,7 @@ class ContaController extends Controller
 
             $model->getByCorrentista($id_correntista);
 
-            parent::getResponseAsJSON($model->rows);
+            parent::getResponseAsJSON($model->rows, 1);
         }
         catch (Exception $e)
         {
@@ -68,7 +68,7 @@ class ContaController extends Controller
 
 			$model->getByNumero($numero);
 
-			parent::getResponseAsJSON($model->rows);
+			parent::getResponseAsJSON($model->rows, 1);
 		}
 		catch (Exception $e)
         {
@@ -91,7 +91,7 @@ class ContaController extends Controller
 
 			$model->addConta();
 
-			parent::getResponseAsJSON(['message' => 'Conta adicionada!']);
+			parent::getResponseAsJSON(['message' => 'Conta adicionada!'], 1);
         }
         catch (Exception $e)
         {
@@ -115,7 +115,7 @@ class ContaController extends Controller
 
 			$model->updateConta();
 
-			parent::getResponseAsJSON(['message' => 'Atualizada!']);
+			parent::getResponseAsJSON(['message' => 'Atualizada!'], 1);
         }
         catch (Exception $e)
         {

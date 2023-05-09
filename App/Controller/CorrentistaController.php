@@ -14,7 +14,7 @@ class CorrentistaController extends Controller
         {
             $model = new CorrentistaModel();
             $model->getAll();
-            parent::getResponseAsJSON($model->rows);
+            parent::getResponseAsJSON($model->rows, 1);
 
         } catch (Exception $e) {
             parent::getExceptionAsJSON($e);
@@ -31,7 +31,7 @@ class CorrentistaController extends Controller
 
             $model->getById($id);
 
-            parent::getResponseAsJSON($model->rows);
+            parent::getResponseAsJSON($model->rows, 1);
 
         }
         catch (Exception $e)
@@ -51,7 +51,7 @@ class CorrentistaController extends Controller
 
             $model->getByCPFAndSenha($cpf, $senha);
 
-            parent::getResponseAsJSON($model->rows);
+            parent::getResponseAsJSON($model->rows, 1);
 
         }
         catch (Exception $e)
@@ -80,12 +80,11 @@ class CorrentistaController extends Controller
 
                 $model->getById($last_id);
 
-                parent::getResponseAsJSON($model->rows);
+                parent::getResponseAsJSON($model->rows, 1);
             } else {
                 parent::getResponseAsJSON([
-                    'ErrNumber' => 1,
                     'message' => 'CPF já cadastrado.'
-                ]);
+                ], 2);
             }
         }
         catch (Exception $e)
@@ -110,7 +109,7 @@ class CorrentistaController extends Controller
 
 			$model->updateCorrentista();
 
-			parent::getResponseAsJSON(['message' => 'Atualizado!']);
+			parent::getResponseAsJSON(['message' => 'Atualizado!'], 1);
         }
         catch (Exception $e)
         {

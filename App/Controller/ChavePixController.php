@@ -13,7 +13,7 @@ class ChavePixController extends Controller
 		try {
 			$model = new ChavePixModel();
 			$model->getAll();
-			parent::getResponseAsJSON($model->rows);
+			parent::getResponseAsJSON($model->rows, 1);
 		} catch (Exception $e) {
 			parent::getExceptionAsJSON($e);
 		}
@@ -28,7 +28,7 @@ class ChavePixController extends Controller
 
 			$model->getById($id);
 
-			parent::getResponseAsJSON($model->rows);
+			parent::getResponseAsJSON($model->rows, 1);
 		} catch (Exception $e) {
 			parent::getExceptionAsJSON($e);
 		}
@@ -43,7 +43,7 @@ class ChavePixController extends Controller
 
 			$model->getByConta($id_conta);
 
-			parent::getResponseAsJSON($model->rows);
+			parent::getResponseAsJSON($model->rows, 1);
 		} catch (Exception $e) {
 			parent::getExceptionAsJSON($e);
 		}
@@ -58,7 +58,7 @@ class ChavePixController extends Controller
 
 			$model->getByChave($chave);
 
-			parent::getResponseAsJSON($model->rows);
+			parent::getResponseAsJSON($model->rows, 1);
 		} catch (Exception $e) {
 			parent::getExceptionAsJSON($e);
 		}
@@ -77,7 +77,7 @@ class ChavePixController extends Controller
 
 			$model->addChavePix();
 
-			parent::getResponseAsJSON(['message' => 'ChavePix adicionada!']);
+			parent::getResponseAsJSON(['message' => 'ChavePix adicionada!'], 1);
 		} catch (Exception $e) {
 			parent::getExceptionAsJSON($e);
 		}
@@ -97,7 +97,7 @@ class ChavePixController extends Controller
 
 			$model->updateChavePix();
 
-			parent::getResponseAsJSON(['message' => 'Atualizada!']);
+			parent::getResponseAsJSON(['message' => 'Atualizada!'], 1);
 		} catch (Exception $e) {
 			parent::getExceptionAsJSON($e);
 		}

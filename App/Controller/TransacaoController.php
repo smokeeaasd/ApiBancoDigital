@@ -14,7 +14,7 @@ class TransacaoController extends Controller
         {
             $model = new TransacaoModel();
             $model->getAll();
-            parent::getResponseAsJSON($model->rows);
+            parent::getResponseAsJSON($model->rows, 1);
 
         } catch (Exception $e) {
             parent::getExceptionAsJSON($e);
@@ -31,7 +31,7 @@ class TransacaoController extends Controller
 
             $model->getById($id);
 
-            parent::getResponseAsJSON($model->rows);
+            parent::getResponseAsJSON($model->rows, 1);
 
         }
         catch (Exception $e)
@@ -50,7 +50,7 @@ class TransacaoController extends Controller
 
             $model->getByDestinatario($id_destinatario);
 
-            parent::getResponseAsJSON($model->rows);
+            parent::getResponseAsJSON($model->rows, 1);
         }
         catch (Exception $e)
         {
@@ -68,7 +68,7 @@ class TransacaoController extends Controller
 
 			$model->getByRemetente($id_remetente);
 
-			parent::getResponseAsJSON($model->rows);
+			parent::getResponseAsJSON($model->rows, 1);
 		}
 		catch (Exception $e)
         {
@@ -91,7 +91,7 @@ class TransacaoController extends Controller
 
 			$model->addTransacao();
 
-			parent::getResponseAsJSON(['message' => 'Transacao adicionada!']);
+			parent::getResponseAsJSON(['message' => 'Transacao adicionada!'], 1);
         }
         catch (Exception $e)
         {
