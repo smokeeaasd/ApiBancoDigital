@@ -50,7 +50,10 @@ class ContaController extends Controller
 
             $model->getByCorrentista($id_correntista);
 
-            parent::getResponseAsJSON($model->rows, 1);
+            if ($model->rows)
+                parent::getResponseAsJSON($model->rows, 1);
+            else
+                parent::getResponseAsJSON([], 2);
         }
         catch (Exception $e)
         {

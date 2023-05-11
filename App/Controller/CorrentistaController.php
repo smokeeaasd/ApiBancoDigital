@@ -51,7 +51,12 @@ class CorrentistaController extends Controller
 
             $model->getByCPFAndSenha($cpf, $senha);
 
-            parent::getResponseAsJSON($model->rows, 1);
+            if ($model->rows)
+                parent::getResponseAsJSON($model->rows, 1);
+            else
+                parent::getResponseAsJSON([
+                    'message' => "Não existe conta com as credenciais informadas"
+                ], 2);
 
         }
         catch (Exception $e)
@@ -64,12 +69,16 @@ class CorrentistaController extends Controller
     {
         try 
         {
-			$model = new CorrentistaModel();
-
             $json = json_decode(file_get_contents("php://input"));
             $cpf = $json->CPF;
 
-            if (!(new CorrentistaModel())->getByCPF($cpf))
+			$model = new CorrentistaModel();
+
+            $model->getByCPF($cpf);
+
+            $temConta = $model->rows;
+
+            if (!$temConta)
             {		
                 $model->nome = $json->Nome;
                 $model->cpf = $json->CPF;

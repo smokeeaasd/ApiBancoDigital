@@ -28,6 +28,7 @@ class CorrentistaModel extends Model
         {
             $dao = new CorrentistaDAO();
             $this->rows = $dao->selectById($id);
+
         }
         catch (Exception $e)
         {
