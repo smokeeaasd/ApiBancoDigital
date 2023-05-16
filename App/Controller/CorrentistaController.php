@@ -44,12 +44,11 @@ class CorrentistaController extends Controller
     {
         try 
         {
-            $cpf = parent::getStringFromUrl($_GET['cpf']);
-            $senha = parent::getStringFromUrl($_GET['senha']);
-            
+            $json = json_decode(file_get_contents("php://input"));
+
             $model = new CorrentistaModel();
 
-            $model->getByCPFAndSenha($cpf, $senha);
+            $model->getByCPFAndSenha($json->CPF, $json->Senha);
 
             if ($model->rows)
                 parent::getResponseAsJSON($model->rows, 1);

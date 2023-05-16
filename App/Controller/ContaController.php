@@ -8,6 +8,31 @@ use Exception;
 
 class ContaController extends Controller
 {
+    private static function randomAccountNumber() : int
+    {
+        $num_conta = 0;
+
+        for ($i = 0; $i <= 5; $i++)
+        {
+            $num_conta += rand(1, 9) * pow(10, $i);
+        }
+
+        return $num_conta;
+    }
+
+    private static function getNewAccountNumber() : int
+    {
+        $model = new ContaModel();
+        $num = ContaController::randomAccountNumber();
+
+        $model->getByNumero($num);
+
+        if ($model->rows) 
+            ContaController::getNewAccountNumber();
+        else
+            return $num;
+    }
+
     public static function getContas() : void
     {
         try
@@ -87,7 +112,7 @@ class ContaController extends Controller
 
             $json = json_decode(file_get_contents("php://input"));
             
-			$model->numero = $json->Numero;
+			$model->numero = ContaController::getNewAccountNumber();
 			$model->tipo = $json->Tipo;
 			$model->senha = $json->Senha;
 			$model->id_correntista = $json->IdCorrentista;
