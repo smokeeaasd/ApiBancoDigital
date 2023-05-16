@@ -45,7 +45,7 @@ class ContaDAO extends DAO
 
         $stmt->execute();
 
-        return $stmt->fetchObject("App\\Model\\ContaModel");
+        return $stmt->fetchAll(DAO::FETCH_CLASS);
     }
 
     public function selectByNumero(int $numero)
