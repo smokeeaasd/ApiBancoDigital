@@ -63,17 +63,17 @@ class ContaDAO extends DAO
 
     public function insert(ContaModel $model)
     {
-        $sql = "INSERT INTO Conta (id, numero, tipo, senha, id_correntista) VALUES (?, ?, ?, sha1(?), ?)";
+        $sql = "INSERT INTO Conta (numero, tipo, senha, id_correntista) VALUES (?, ?, sha1(?), ?)";
 
         $stmt = $this->conexao->prepare($sql);
-
-        $stmt->bindValue(1, $model->id);
-        $stmt->bindValue(2, $model->id); // eu defini q o numero vai ser igual ao id pq sim
-        $stmt->bindValue(3, $model->tipo);
-        $stmt->bindValue(4, $model->senha);
-        $stmt->bindValue(5, $model->id_correntista);
+        $stmt->bindValue(1, $model->numero);
+        $stmt->bindValue(2, $model->tipo);
+        $stmt->bindValue(3, $model->senha);
+        $stmt->bindValue(4, $model->id_correntista);
 
         $stmt->execute();
+
+        return $this->conexao->lastInsertId();
     }
 
     public function update(ContaModel $model)
