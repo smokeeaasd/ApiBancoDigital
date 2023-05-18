@@ -110,12 +110,12 @@ class ContaController extends Controller
         {
 			$model = new ContaModel();
 
-            $json = json_decode(file_get_contents("php://input"));
+	            $json = json_decode(file_get_contents("php://input"));
             
 			$model->numero = ContaController::getNewAccountNumber();
 			$model->tipo = $json->Tipo;
 			$model->senha = $json->Senha;
-			$model->id_correntista = $json->IdCorrentista;
+			$model->id_correntista = $json->Id_Correntista;
 
 			$model->addConta();
 
@@ -139,7 +139,7 @@ class ContaController extends Controller
 			$model->numero = $json->Numero;
 			$model->tipo = $json->Tipo;
 			$model->senha = $json->Senha;
-			$model->id_correntista = $json->IdCorrentista;
+			$model->id_correntista = $json->Id_Correntista;
 
 			$model->updateConta();
 
