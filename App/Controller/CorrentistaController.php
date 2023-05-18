@@ -75,9 +75,9 @@ class CorrentistaController extends Controller
 
             $model->getByCPF($cpf);
 
-            $temConta = $model->rows;
+            $temCorrentista = $model->rows;
 
-            if (!$temConta)
+            if (!$temCorrentista)
             {		
                 $model->nome = $json->Nome;
                 $model->cpf = $json->CPF;

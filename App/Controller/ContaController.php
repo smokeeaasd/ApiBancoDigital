@@ -117,9 +117,9 @@ class ContaController extends Controller
 			$model->senha = $json->Senha;
 			$model->id_correntista = $json->Id_Correntista;
 
-			$model->addConta();
+			$last_id = $model->addConta();
 
-			parent::getResponseAsJSON(['message' => 'Conta adicionada!'], 1);
+			parent::getResponseAsJSON($model->getById($last_id), 1);
         }
         catch (Exception $e)
         {

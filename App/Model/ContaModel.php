@@ -67,7 +67,7 @@ class ContaModel extends Model
         {
             $dao = new ContaDAO();
             
-			$dao->insert($this);
+			return $dao->insert($this);
         }
         catch (Exception $e)
         {
