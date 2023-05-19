@@ -119,7 +119,10 @@ class ContaController extends Controller
 
 			$last_id = $model->addConta();
 
-			parent::getResponseAsJSON($model->getById($last_id), 1);
+			$model->getById($last_id);
+			
+
+			parent::getResponseAsJSON($model->rows, 1);
         }
         catch (Exception $e)
         {
