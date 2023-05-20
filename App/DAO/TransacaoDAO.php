@@ -53,7 +53,7 @@ class TransacaoDAO extends DAO
 
 		$stmt->execute();
 
-		return $stmt->fetchObject("App\\Model\\TransacaoModel");
+		return $stmt->fetchAll(DAO::FETCH_CLASS);
 	}
 
 	public function selectByDestinatario(int $id_destinatario)
@@ -69,7 +69,7 @@ class TransacaoDAO extends DAO
 
 		$stmt->execute();
 
-		return $stmt->fetchObject("App\\Model\\TransacaoModel");
+		return $stmt->fetchAll(DAO::FETCH_CLASS);
 	}
 
 	public function insert(TransacaoModel $model)
