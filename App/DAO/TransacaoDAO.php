@@ -84,6 +84,8 @@ class TransacaoDAO extends DAO
 		$stmt->bindValue(3, $model->id_destinatario);
 
 		$stmt->execute();
+
+		return $this->conexao->lastInsertId();
 	}
 
 	public function deleteByIdRemetente(int $id_remetente)

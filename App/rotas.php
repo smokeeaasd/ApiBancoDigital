@@ -114,6 +114,10 @@ switch ($uri)
 		TransacaoController::addTransacao();
 	break;
 
+	case "/api/transacao/listen/by-destinatario":
+		TransacaoController::ListenByIdDestinatario();
+	break;
+
     default:
         http_response_code(403);
     break;

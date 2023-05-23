@@ -67,7 +67,7 @@ class TransacaoModel extends Model
         try
         {
             $dao = new TransacaoDAO();
-			$dao->insert($this);
+			return $dao->insert($this);
         }
         catch (Exception $e)
         {
