@@ -97,12 +97,12 @@ class TransacaoController extends Controller
 
 			$model = new TransacaoModel();
 
-			$model->getByDestinatario($id_destinatario);
+			$model->getUltimaByDestinatario($id_destinatario);
 
 			$rows = $model->rows;
-			
-			$transacoes = array_filter($rows, 'self::FiltrarPorNova');
-			
+
+			$transacoes = array_filter(array($rows), "self::FiltrarPorRecente");
+
 			parent::getResponseAsJSON($transacoes, 1);
 		}
 		catch (Exception $e)
@@ -115,8 +115,13 @@ class TransacaoController extends Controller
 	{
 		$now = date('Y-m-d H:i:s');
 		$data = new DateTime($now);
+		
 		$data->sub(new DateInterval('PT' . 1 . 'S'));
-
+		echo "\n";
+		echo $transacao->data_transacao;
+		echo "\n";
+		echo $data->format('Y-m-d H:i:s');
+		echo "\n";
 		return $transacao->data_transacao >= $data->format('Y-m-d H:i:s');
 	}
 }

@@ -62,6 +62,19 @@ class TransacaoModel extends Model
 		}
 	}
 
+    public function getUltimaByDestinatario(int $id_destinatario)
+    {
+        try
+        {
+            $dao = new TransacaoDAO();
+
+            $this->rows = $dao->selectUltimaByDestinatario($id_destinatario);
+        }
+        catch (Exception $e)
+        {
+            throw $e;
+        }
+    }
     public function addTransacao()
     {
         try

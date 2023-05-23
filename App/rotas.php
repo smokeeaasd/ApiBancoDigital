@@ -114,7 +114,7 @@ switch ($uri)
 		TransacaoController::addTransacao();
 	break;
 
-	case "/api/transacao/listen/by-destinatario":
+	case "/api/transacao/ultima/by-destinatario":
 		TransacaoController::ListenByIdDestinatario();
 	break;
 

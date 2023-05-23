@@ -72,6 +72,23 @@ class TransacaoDAO extends DAO
 		return $stmt->fetchAll(DAO::FETCH_CLASS);
 	}
 
+	public function selectUltimaByDestinatario(int $id_destinatario)
+	{
+		$sql = "SELECT t.*, tc.* FROM Transacao t
+				JOIN Transacao_Conta tc ON (t.id = tc.id)
+				WHERE tc.id_destinatario = ?
+				GROUP BY t.id
+				ORDER BY t.data_transacao";
+
+		$stmt = $this->conexao->prepare($sql);
+
+		$stmt->bindValue(1, $id_destinatario);
+
+		$stmt->execute();
+
+		return $stmt->fetchObject("App\\Model\\TransacaoModel");
+	}
+
 	public function insert(TransacaoModel $model)
 	{
 		$sql = "INSERT INTO Transacao (data_transacao, valor) VALUES (now(), ?);
