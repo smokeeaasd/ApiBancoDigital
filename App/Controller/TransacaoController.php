@@ -101,27 +101,22 @@ class TransacaoController extends Controller
 
 			$rows = $model->rows;
 
-			$transacoes = array_filter(array($rows), "self::FiltrarPorRecente");
+			$now = date("Y:m:d H:i:s");
 
-			parent::getResponseAsJSON($transacoes, 1);
+			$now_date = new DateTime($now);
+
+			$transacao_date = new DateTime($rows->data_transacao);
+
+			$diff = $now_date->getTimestamp() - $transacao_date->getTimestamp();
+
+			if (round($diff) <= 2)
+				parent::getResponseAsJSON($rows, 1);
+			else
+				parent::getResponseAsJSON(null, 2);
 		}
 		catch (Exception $e)
 		{
 			parent::getExceptionAsJSON($e);
 		}
-	}
-
-	private static function FiltrarPorRecente($transacao)
-	{
-		$now = date('Y-m-d H:i:s');
-		$data = new DateTime($now);
-		
-		$data->sub(new DateInterval('PT' . 1 . 'S'));
-		echo "\n";
-		echo $transacao->data_transacao;
-		echo "\n";
-		echo $data->format('Y-m-d H:i:s');
-		echo "\n";
-		return $transacao->data_transacao >= $data->format('Y-m-d H:i:s');
 	}
 }

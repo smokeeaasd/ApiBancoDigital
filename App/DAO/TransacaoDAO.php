@@ -78,7 +78,8 @@ class TransacaoDAO extends DAO
 				JOIN Transacao_Conta tc ON (t.id = tc.id)
 				WHERE tc.id_destinatario = ?
 				GROUP BY t.id
-				ORDER BY t.data_transacao";
+				ORDER BY t.data_transacao DESC
+				LIMIT 1";
 
 		$stmt = $this->conexao->prepare($sql);
 
